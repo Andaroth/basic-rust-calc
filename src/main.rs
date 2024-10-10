@@ -18,7 +18,7 @@ fn main() {
         print_menu();
         input.clear();
         io::stdin().read_line(input).expect("Failed to read line");
-        let select: i32 = input.trim().parse().expect("Entrez un nombre!");
+        let select: usize = input.trim().parse().expect("Entrez un nombre!");
         if select < 1 || select > 5 {
             println!("Choisissez une option valide (de 1 à 4)");
         } else {
@@ -34,26 +34,15 @@ fn main() {
             io::stdin().read_line(input_b).expect("Failed to read line");
             let b: f64 = input_b.trim().parse().expect("Entrez un nombre!");
 
-            let mut res: f64 = 0.0;
-            let mut symbol: &str = "";
-            if select == 1 {
-                res = a + b;
-                symbol = "+";
-            }
-            if select == 2 {
-                res = a - b;
-                symbol = "-";
-            }
-            if select == 3 {
-                res = a / b;
-                symbol = "/";
-            }
-            if select == 4 {
-                res = a % b;
-                symbol = "%";
-            }
+            let symbol: &str = ["+","-","/","%"][select - 1];
+            let ans: f64 = [
+                a + b,
+                a - b,
+                a / b,
+                a % b,
+            ][select - 1];
 
-            println!("\n\n\n{} {} {} = {} \n\n\n", a, symbol, b, res);
+            println!("\n\n\n{} {} {} = {} \n\n\n", a, symbol, b, ans);
         }
     }
 }

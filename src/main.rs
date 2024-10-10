@@ -11,16 +11,14 @@ fn print_menu() {
 
 fn main() {
     println!("=================\n==   AB calc   ==\n=================\n");
-    let input = &mut String::new();
-    let input_a = &mut String::new();
-    let input_b = &mut String::new();
+    let (input_select,input_a,input_b) = (&mut String::new(),&mut String::new(),&mut String::new());
     loop {
         print_menu();
-        input.clear();
-        io::stdin().read_line(input).expect("Failed to read line");
-        let select: usize = input.trim().parse().expect("Entrez un nombre!");
+        input_select.clear();
+        io::stdin().read_line(input_select).expect("Failed to read line");
+        let select: usize = input_select.trim().parse().expect("Entrez un nombre!");
         if select < 1 || select > 5 {
-            println!("Choisissez une option valide (de 1 à 4)");
+            println!("Choisissez une option valide (de 1 à 5)");
         } else {
             if select == 5 { break; }
             // prompt a

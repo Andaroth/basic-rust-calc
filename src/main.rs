@@ -32,7 +32,7 @@ fn main() {
             io::stdin().read_line(input_b).expect("Failed to read line");
             let b: f64 = input_b.trim().parse().expect("Entrez un nombre!");
 
-            let symbol: &str = ["+","-","/","%"][select - 1];
+            let symbol: char = ['+','-','/','%'][select - 1];
             let ans: f64 = [
                 a + b,
                 a - b,

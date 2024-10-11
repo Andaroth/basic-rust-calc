@@ -85,14 +85,14 @@ fn main() {
             println!("\n\x1b[34m[ {} ]\x1b[0m\n", OPERATIONS[select - 1].0.to_uppercase()); // name of selected operation
 
             loop {
-                let input = read_value("Choisissez le premier terme"); // prompt a
+                input = read_value("Choisissez le premier terme"); // prompt a
                 if !is_str_number::<f64>(&input) { error(INVALID_FLOAT); }
                 else { break; }
             }
             let a: f64 = str_to_number::<f64>(&input); // save prompt a to stack
             
             loop {
-                let input = read_value("Choisissez le second terme"); // prompt b
+                input = read_value("Choisissez le second terme"); // prompt b
                 if !is_str_number::<f64>(&input) { error(INVALID_FLOAT); }
                 else { break; }
             }

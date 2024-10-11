@@ -63,8 +63,9 @@ fn display_start() {
 
 fn main() {
     display_start(); // welcome
+    let mut input: String = String::new(); // global buffer
     loop {
-        let input = read_value("Choisissez une opération");
+        input = read_value("Choisissez une opération");
         if !is_str_number::<i32>(&input) { // error handling
             error("Saisie invalide, veuillez recommencer");
             continue; // restart loop
@@ -82,22 +83,18 @@ fn main() {
         } else { // constrained to existing options
             if select == OPERATIONS.len() + 1 { break; } // "quit" option, kill loop (end program)
             println!("\n\x1b[34m[ {} ]\x1b[0m\n", OPERATIONS[select - 1].0.to_uppercase()); // name of selected operation
-            
-            let mut input: String = String::new();
+
             loop {
-                input = read_value("Choisissez le premier terme"); // prompt a
-                if !is_str_number::<f64>(&input) { // error handling
-                    error(INVALID_FLOAT);
-                } else { break; }
+                let input = read_value("Choisissez le premier terme"); // prompt a
+                if !is_str_number::<f64>(&input) { error(INVALID_FLOAT); }
+                else { break; }
             }
             let a: f64 = str_to_number::<f64>(&input); // save prompt a to stack
             
-            let mut input: String = String::new();
             loop {
-                input = read_value("Choisissez le second terme"); // prompt b
-                if !is_str_number::<f64>(&input) { // error handling
-                    error(INVALID_FLOAT);
-                } else { break; }
+                let input = read_value("Choisissez le second terme"); // prompt b
+                if !is_str_number::<f64>(&input) { error(INVALID_FLOAT); }
+                else { break; }
             }
             let b: f64 = str_to_number::<f64>(&input); // save prompt b to stack
 

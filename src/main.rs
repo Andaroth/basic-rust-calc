@@ -9,7 +9,7 @@ fn error(text: &str) { println!("\n\x1b[31m{}\x1b[0m\n", text); } // colored pri
 
 // implemented math functions
 fn add(a: f64, b: f64) -> f64 { a + b }
-fn subtract(a: f64, b: f64) -> f64 { a - b }
+fn substract(a: f64, b: f64) -> f64 { a - b }
 fn multiply(a: f64, b: f64) -> f64 { a * b }
 fn divide(a: f64, b: f64) -> f64 { a / b }
 fn remainder(a: f64, b: f64) -> f64 { a % b }
@@ -17,7 +17,7 @@ fn remainder(a: f64, b: f64) -> f64 { a % b }
 static OPERATIONS: [(&'static str, fn(f64, f64) -> f64, char); 5] = [
     // Catalog operations (name, function, symbol)
     ("Addition", add, '+'),
-    ("Soustraction", subtract, '-'),
+    ("Soustraction", substract, '-'),
     ("Multiplication", multiply, '*'),
     ("Division", divide, '/'),
     ("Reste Modulo", remainder, '%'),

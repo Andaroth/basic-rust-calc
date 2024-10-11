@@ -17,7 +17,10 @@ fn main() {
         print_menu();
         input_select.clear();
         io::stdin().read_line(input_select).expect("Failed to read line");
-        if !input_select.trim().parse::<i32>().is_ok() { return println!("Entrez un nombre!"); }
+        if !input_select.trim().parse::<i32>().is_ok() {
+            println!("Entrez un nombre!");
+            continue;
+        }
         let select: usize = input_select.trim().parse().expect("Entrez un nombre!");
         if select < 1 || select > 5 {
             println!("Choisissez une option valide (de 1 à 5)");
@@ -27,13 +30,19 @@ fn main() {
             input_a.clear();
             println!("Choisissez un premier terme:");
             io::stdin().read_line(input_a).expect("Failed to read line");
-            if !input_a.trim().parse::<f64>().is_ok() { return println!("Entrez un nombre!"); }
+            if !input_a.trim().parse::<f64>().is_ok() {
+                println!("Entrez un nombre!");
+                continue;
+            }
             let a: f64 = input_a.trim().parse().expect("Entrez un nombre!");
             // prompt b
             input_b.clear();
             println!("Choisissez un second terme:");
             io::stdin().read_line(input_b).expect("Failed to read line");
-            if !input_b.trim().parse::<f64>().is_ok() { return println!("Entrez un nombre!"); }
+            if !input_b.trim().parse::<f64>().is_ok() {
+                println!("Entrez un nombre!");
+                continue;
+            }
             let b: f64 = input_b.trim().parse().expect("Entrez un nombre!");
 
             let symbol: char = ['+','-','/','%'][select - 1];

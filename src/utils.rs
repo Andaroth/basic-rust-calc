@@ -1,0 +1,26 @@
+use std::io;
+use std::io::Write;
+use std::str::FromStr;
+use std::fmt::Debug;
+
+pub fn clear_screen() { print!("{}[2J", 27 as char); } // erase display
+pub fn escape_line() { io::stdout().flush().unwrap(); } // escape 1 \n return
+pub fn pause() {
+    print!("Appuyez sur Enter...");
+    escape_line(); 
+    io::stdin().read_line(&mut String::new()).expect("");
+}
+pub fn is_str_number<T: FromStr>(text: &str) -> bool { // verify if parsable string to number
+    return text.trim().parse::<T>().is_ok();
+}
+pub fn str_to_number<T: FromStr>(text: &str) -> T where <T as FromStr>::Err: Debug { // conversion
+    return text.trim().parse::<T>().expect("Parsing error");
+}
+pub fn read_value(print: &str) -> String {
+    print!("{}: ", print);
+    escape_line();
+    let mut buffer = String::new();
+    io::stdin().read_line(&mut buffer).ok().expect("Could not read line"); // prompt to ref
+    return buffer;
+}
+pub fn error(text: &str) { println!("\n\x1b[31m{}\x1b[0m\n", text); } // colored print

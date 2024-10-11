@@ -1,67 +1,20 @@
-use std::io;
-use std::io::Write;
-use std::str::FromStr;
-use std::fmt::Debug;
+mod utils;
+use crate::utils::clear_screen;
+use crate::utils::escape_line;
+use crate::utils::pause;
+use crate::utils::is_str_number;
+use crate::utils::str_to_number;
+use crate::utils::read_value;
+use crate::utils::error;
 
-static ERROR_MESSAGE: &str = "Une erreur s'est produite";
-static INVALID_FLOAT: &str = "Ce n'est pas un nombre valide";
-fn error(text: &str) { println!("\n\x1b[31m{}\x1b[0m\n", text); } // colored print
+mod math;
+use crate::math::OPERATIONS;
 
-// implemented math functions
-fn add(a: f64, b: f64) -> f64 { a + b }
-fn substract(a: f64, b: f64) -> f64 { a - b }
-fn multiply(a: f64, b: f64) -> f64 { a * b }
-fn divide(a: f64, b: f64) -> f64 { a / b }
-fn remainder(a: f64, b: f64) -> f64 { a % b }
-
-static OPERATIONS: [(&'static str, fn(f64, f64) -> f64, char); 5] = [
-    // Catalog operations (name, function, symbol)
-    ("Addition", add, '+'),
-    ("Soustraction", substract, '-'),
-    ("Multiplication", multiply, '*'),
-    ("Division", divide, '/'),
-    ("Reste Modulo", remainder, '%'),
-];
-
-fn clear_screen() { print!("{}[2J", 27 as char); } // erase commands
-fn escape_line() { io::stdout().flush().unwrap(); } // escape 1 \n return
-
-fn pause() {
-    print!("Appuyez sur Enter...");
-    escape_line(); 
-    io::stdin().read_line(&mut String::new()).expect("");
-}
-
-fn header() { // styled header
-    println!("\x1b[32m=========================================\n=                AB calc                =\n=========================================\x1b[0m\n");
-}
-
-fn menu() { // shows all option + quit
-    for (i,m) in OPERATIONS.iter().enumerate() { println!("[{}] {}", i + 1, &m.0); }
-    print!("[{}] Quitter\n", OPERATIONS.len() + 1);
-}
-
-fn is_str_number<T: FromStr>(text: &str) -> bool { // verify if parsable string to number
-    return text.trim().parse::<T>().is_ok();
-}
-fn str_to_number<T: FromStr>(text: &str) -> T where <T as FromStr>::Err: Debug { // conversion
-    return text.trim().parse::<T>().expect(&ERROR_MESSAGE);
-}
-
-fn read_value(print: &str) -> String {
-    print!("{}: ", print);
-    escape_line();
-    let mut buffer = String::new();
-    io::stdin().read_line(&mut buffer).ok().expect(ERROR_MESSAGE); // prompt to ref
-    return buffer;
-}
-
-fn display_start() {
-    header(); // logo
-    menu(); // options
-}
+mod ui;
+use crate::ui::display_start;
 
 fn main() {
+    static INVALID_FLOAT: &str = "Ce n'est pas un nombre valide";
     display_start(); // welcome
     let mut input: String = String::new(); // global buffer
     input.clear();

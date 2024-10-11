@@ -83,17 +83,21 @@ fn main() {
             if select == OPERATIONS.len() + 1 { break; } // "quit" option, kill loop (end program)
             println!("\n\x1b[34m[ {} ]\x1b[0m\n", OPERATIONS[select - 1].0.to_uppercase()); // name of selected operation
             
-            let input = read_value("Choisissez le premier terme"); // prompt a
-            if !is_str_number::<f64>(&input) { // error handling
-                error(INVALID_FLOAT);
-                continue; // restart loop
+            let mut input: String = String::new();
+            loop {
+                input = read_value("Choisissez le premier terme"); // prompt a
+                if !is_str_number::<f64>(&input) { // error handling
+                    error(INVALID_FLOAT);
+                } else { break; }
             }
             let a: f64 = str_to_number::<f64>(&input); // save prompt a to stack
             
-            let input = read_value("Choisissez le second terme"); // prompt b
-            if !is_str_number::<f64>(&input) { // error handling
-                error(INVALID_FLOAT);
-                continue; // restart loop
+            let mut input: String = String::new();
+            loop {
+                input = read_value("Choisissez le second terme"); // prompt b
+                if !is_str_number::<f64>(&input) { // error handling
+                    error(INVALID_FLOAT);
+                } else { break; }
             }
             let b: f64 = str_to_number::<f64>(&input); // save prompt b to stack
 

@@ -6,7 +6,7 @@ fn print_menu() {
     println!("[2] Soustraction");
     println!("[3] Division");
     println!("[4] Reste");
-    println!("[5] Quitter")
+    println!("[5] Quitter");
 }
 
 fn main() {

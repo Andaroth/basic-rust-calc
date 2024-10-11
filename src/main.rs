@@ -25,7 +25,7 @@ static OPERATIONS: [(&'static str, fn(f64, f64) -> f64, char); 5] = [
 
 fn print_menu() {
     for (i,m) in OPERATIONS.iter().enumerate() { println!("[{}] {}", i + 1, &m.0); }
-    println!("[{}] Quitter", OPERATIONS.len() + 1);
+    println!("[{}] Quitter\n", OPERATIONS.len() + 1);
 }
 
 fn is_str_number<T: FromStr>(text: &str) -> bool { return text.trim().parse::<T>().is_ok(); }
@@ -40,7 +40,7 @@ fn read_value(print: &str) -> String {
 }
 
 fn main() {
-    println!("=================\n==   AB calc   ==\n=================\n");
+    println!("\x1b[34m=================\n==   AB calc   ==\n=================\n\x1b[0m");
     loop {
         print_menu();
         let input = read_value("Choisissez une opération");

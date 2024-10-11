@@ -4,10 +4,10 @@ use std::io::Write;
 use crate::math::OPERATIONS;
 
 fn header() { // styled header
-    println!("\x1b[32m=========================================\n=                AB calc                =\n=========================================\x1b[0m\n");
+    println!("\x1b[32m=========================================\n=             AB calc by Anda           =\n=========================================\x1b[0m\n");
 }
 
-fn menu() { // shows all option + quit
+fn menu() { // shows all options + quit
     for (i,m) in OPERATIONS.iter().enumerate() { println!("[{}] {}", i + 1, &m.0); }
     print!("[{}] Quitter\n", OPERATIONS.len() + 1);
 }
@@ -20,7 +20,7 @@ pub fn display_start() {
 pub fn pause() {
     print!("Appuyez sur Enter...");
     escape_line(); 
-    io::stdin().read_line(&mut String::new()).expect("");
+    io::stdin().read_line(&mut String::new()).expect(""); // fake pause (prompt into void)
 }
 
 pub fn clear_screen() { print!("{}[2J", 27 as char); } // erase display

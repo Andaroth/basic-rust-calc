@@ -3,8 +3,6 @@ use std::io::Write;
 use std::str::FromStr;
 use std::fmt::Debug;
 
-type MenuType = [(&'static str, fn(f64, f64) -> f64, char); 5];
-
 static ERROR_MESSAGE: &str = "Une erreur s'est produite";
 static INVALID_FLOAT: &str = "Ce n'est pas un nombre valide";
 fn print_error(text: &str) {
@@ -17,7 +15,7 @@ fn multiply(a: f64, b: f64) -> f64 { a * b }
 fn divide(a: f64, b: f64) -> f64 { a / b }
 fn remainder(a: f64, b: f64) -> f64 { a % b }
 
-static OPERATIONS: MenuType = [
+static OPERATIONS: [(&'static str, fn(f64, f64) -> f64, char); 5] = [
     ("Addition", add, '+'),
     ("Soustraction", subtract, '-'),
     ("Multiplication", multiply, '*'),

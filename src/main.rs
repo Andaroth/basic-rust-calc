@@ -1,17 +1,17 @@
 mod utils;
-use crate::utils::clear_screen;
-use crate::utils::escape_line;
-use crate::utils::pause;
 use crate::utils::is_str_number;
 use crate::utils::str_to_number;
 use crate::utils::read_value;
-use crate::utils::error;
 
 mod math;
 use crate::math::OPERATIONS;
 
 mod ui;
 use crate::ui::display_start;
+use crate::ui::pause;
+use crate::ui::clear_screen;
+use crate::ui::escape_line;
+use crate::ui::error;
 
 fn main() {
     static INVALID_FLOAT: &str = "Ce n'est pas un nombre valide";
@@ -24,7 +24,6 @@ fn main() {
             error("Saisie invalide, veuillez recommencer");
             continue; // restart loop
         }
-        clear_screen();
         let select: usize = str_to_number::<usize>(&input); // usize to select operations by index
         if select < 1 || select > OPERATIONS.len() + 1 { // not existing option
             display_start();
@@ -36,6 +35,7 @@ fn main() {
             error(&warn);
         } else { // constrained to existing options
             if select == OPERATIONS.len() + 1 { break; } // "quit" option, kill loop (end program)
+            clear_screen();
             println!("\n\x1b[34m[ {} ]\x1b[0m\n", OPERATIONS[select - 1].0.to_uppercase()); // name of selected operation
 
             loop {

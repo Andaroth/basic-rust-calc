@@ -10,8 +10,8 @@ use crate::ui::{display_start,pause,clear_screen,escape_line,error};
 fn main() {
     display_start(); // welcome
     let mut input: String = String::new(); // global buffer
-    input.clear();
     loop {
+        input.clear();
         input = read_value("Choisissez une opération");
         if !is_str_number::<i32>(&input) { // error handling
             error("Saisie invalide, veuillez recommencer"); // throw warn in console
@@ -21,13 +21,12 @@ fn main() {
         if select < 1 || select > OPERATIONS.len() + 1 { // not existing option
             display_start(); // menu
             escape_line(); // escape \n
-            // coercion & concat of a warning message:
-            let mut warn = "Choisissez une option valide (de 1 à ".to_owned(); // static left side of str
-            warn.push_str(&(OPERATIONS.len() + 1).to_string()); // calculated, to str
-            warn.push_str(")"); // static right side of str
-            error(&warn);
+            error(&format!("Choisissez une option valide (de 1 à {})", OPERATIONS.len() + 1));
         } else { // constrained to existing options
-            if select == OPERATIONS.len() + 1 { break; } // "quit" option, kill loop (end program)
+            if select == OPERATIONS.len() + 1 {// "quit" option
+                println!("\n\x1b[31mBye o/\x1b[0m\n");
+                break; // kill loop (end program)
+            }
             clear_screen();
             println!("\n\x1b[34m[ {} ]\x1b[0m\n", OPERATIONS[select - 1].0.to_uppercase()); // display selected operation
 

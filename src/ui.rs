@@ -36,7 +36,7 @@ pub fn printc(text: &str, color: &str) {
         "cyan" => "36m",
         _ => "0m", // default no color (assumed fallback white)
     };
-    println!("\n\x1b[{}{}\x1b[0m\n", code, text);
+    println!("\x1b[{}{}\x1b[0m", code, text);
 }
 
 pub fn error(message: &str) { printc(&format!("\n{}\n", message), "red"); } // colored print

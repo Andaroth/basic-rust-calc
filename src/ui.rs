@@ -4,7 +4,7 @@ use std::io::Write;
 use crate::math::OPERATIONS;
 
 fn header() { // styled header
-    println!("\x1b[32m=========================================\n=             AB calc by Anda           =\n=========================================\x1b[0m\n");
+    printc("=========================================\n=             AB calc by Anda           =\n=========================================\n", "green");
 }
 
 fn menu() { // shows all options + quit
@@ -27,4 +27,16 @@ pub fn clear_screen() { print!("{}[2J", 27 as char); } // erase display
 
 pub fn escape_line() { io::stdout().flush().unwrap(); } // escape 1 \n return
 
-pub fn error(text: &str) { println!("\n\x1b[31m{}\x1b[0m\n", text); } // colored print
+pub fn printc(text: &str, color: &str) {
+    let code = match color {
+        "red" => "31m",
+        "green" => "32m",
+        "yellow" => "33m",
+        "blue" => "34m",
+        "cyan" => "36m",
+        _ => "0m", // default no color (assumed fallback white)
+    };
+    println!("\n\x1b[{}{}\x1b[0m\n", code, text);
+}
+
+pub fn error(message: &str) { printc(&format!("\n{}\n", message), "red"); } // colored print

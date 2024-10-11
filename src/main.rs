@@ -5,7 +5,7 @@ mod math;
 use crate::math::OPERATIONS;
 
 mod ui;
-use crate::ui::{display_start,pause,clear_screen,escape_line,error};
+use crate::ui::{display_start,pause,clear_screen,escape_line,error,printc};
 
 fn main() {
     display_start(); // welcome
@@ -24,11 +24,11 @@ fn main() {
             error(&format!("Choisissez une option valide (de 1 à {})", OPERATIONS.len() + 1));
         } else { // constrained to existing options
             if select == OPERATIONS.len() + 1 {// "quit" option
-                println!("\n\x1b[31mBye o/\x1b[0m\n");
+                printc("\nBye o/\n", "red");
                 break; // kill loop (end program)
             }
             clear_screen();
-            println!("\n\x1b[34m[ {} ]\x1b[0m\n", OPERATIONS[select - 1].0.to_uppercase()); // display selected operation
+            printc(&format!("\n[ {} ]\n", OPERATIONS[select - 1].0.to_uppercase()), "blue"); // display selected operation
 
             fn ask_prompt(text: &str) -> f64 {
                 let mut buffered: String = String::new(); // scoped buffer
@@ -47,7 +47,7 @@ fn main() {
             let (name, operation, symbol) = OPERATIONS[select - 1]; // extract selected operation details
             let ans: f64 = operation(a,b); // execute operation function
 
-            println!("\n\x1b[32m{}: {} {} {} = \x1b[33m{}\x1b[0m \n", name, a, symbol, b, ans); // show answer
+            printc(&format!("\n{}: {} {} {} = \x1b[33m{}\n", name, a, symbol, b, ans), "green"); // show answer
             pause(); // ask to press enter
             
             clear_screen();

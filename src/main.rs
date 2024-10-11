@@ -64,6 +64,7 @@ fn display_start() {
 fn main() {
     display_start(); // welcome
     let mut input: String = String::new(); // global buffer
+    input.clear();
     loop {
         input = read_value("Choisissez une opération");
         if !is_str_number::<i32>(&input) { // error handling
@@ -85,6 +86,7 @@ fn main() {
             println!("\n\x1b[34m[ {} ]\x1b[0m\n", OPERATIONS[select - 1].0.to_uppercase()); // name of selected operation
 
             loop {
+                input.clear();
                 input = read_value("Choisissez le premier terme"); // prompt a
                 if !is_str_number::<f64>(&input) { error(INVALID_FLOAT); }
                 else { break; }
@@ -92,6 +94,7 @@ fn main() {
             let a: f64 = str_to_number::<f64>(&input); // save prompt a to stack
             
             loop {
+                input.clear();
                 input = read_value("Choisissez le second terme"); // prompt b
                 if !is_str_number::<f64>(&input) { error(INVALID_FLOAT); }
                 else { break; }

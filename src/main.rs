@@ -32,7 +32,7 @@ fn main() {
             println!("\n\x1b[34m[ {} ]\x1b[0m\n", OPERATIONS[select - 1].0.to_uppercase()); // display selected operation
 
             fn ask_prompt(text: &str) -> f64 {
-                let mut buffered: String = String::new(); // global buffer
+                let mut buffered: String = String::new(); // scoped buffer
                 loop { // capture prompt until valid input
                     buffered.clear();
                     buffered = read_value(text); // prompt

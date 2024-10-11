@@ -43,13 +43,14 @@ fn main() {
             }
 
             let a: f64 = ask_prompt("Choisissez le premier terme"); // prompt a
-            let b: f64 = ask_prompt("Choisissez le premier terme"); // prompt b
+            let b: f64 = ask_prompt("Choisissez le second terme"); // prompt b
 
             let (name, operation, symbol) = OPERATIONS[select - 1]; // extract selected operation details
             let ans: f64 = operation(a,b); // execute operation function
 
             println!("\n\x1b[32m{}: {} {} {} = \x1b[33m{}\x1b[0m \n", name, a, symbol, b, ans); // show answer
             pause(); // ask to press enter
+            
             clear_screen();
             display_start(); // menu
         }

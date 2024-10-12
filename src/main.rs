@@ -8,6 +8,7 @@ mod ui;
 use crate::ui::{display_start,pause,clear_screen,escape_line,error,printc};
 
 fn main() {
+    clear_screen();
     display_start(); // welcome
     let mut input: String = String::new(); // global buffer
     loop {

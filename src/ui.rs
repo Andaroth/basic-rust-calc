@@ -3,6 +3,11 @@ use std::io::Write;
 
 use crate::math::OPERATIONS;
 
+pub fn welcome() {
+    clear_screen(); // clean
+    display_start(); // menu
+}
+
 fn header() { // styled header
     printc(" ▗▄▖ ▗▄▄▖      ▗▄▄▖ ▗▄▖ ▗▖    ▗▄▄▖\n▐▌ ▐▌▐▌ ▐▌    ▐▌   ▐▌ ▐▌▐▌   ▐▌   \n▐▛▀▜▌▐▛▀▚▖    ▐▌   ▐▛▀▜▌▐▌   ▐▌   \n▐▌ ▐▌▐▙▄▞▘    ▝▚▄▄▖▐▌ ▐▌▐▙▄▄▖▝▚▄▄▖\n", "green");
     printc("[by Andaroth > https://anda.ninja]\n", "blue");
@@ -42,3 +47,10 @@ pub fn printc(text: &str, color: &str) {
 }
 
 pub fn error(message: &str) { printc(&format!("\n{}\n", message), "red"); } // colored print
+
+pub fn fatal_error(message: &str) {
+    clear_screen();
+    display_start();
+    escape_line(); // escape \n
+    error(message);
+}

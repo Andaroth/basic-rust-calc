@@ -4,7 +4,8 @@ use std::io::Write;
 use crate::math::OPERATIONS;
 
 fn header() { // styled header
-    printc("=========================================\n=             AB calc by Anda           =\n=========================================\n", "green");
+    printc(" ▗▄▖ ▗▄▄▖      ▗▄▄▖ ▗▄▖ ▗▖    ▗▄▄▖\n▐▌ ▐▌▐▌ ▐▌    ▐▌   ▐▌ ▐▌▐▌   ▐▌   \n▐▛▀▜▌▐▛▀▚▖    ▐▌   ▐▛▀▜▌▐▌   ▐▌   \n▐▌ ▐▌▐▙▄▞▘    ▝▚▄▄▖▐▌ ▐▌▐▙▄▄▖▝▚▄▄▖\n", "green");
+    printc("[by Andaroth > https://anda.ninja]\n", "magenta");
 }
 
 fn menu() { // shows all options + quit
@@ -33,6 +34,7 @@ pub fn printc(text: &str, color: &str) {
         "green" => "32m",
         "yellow" => "33m",
         "blue" => "34m",
+        "magenta" => "35m",
         "cyan" => "36m",
         _ => "0m", // default no color (assumed fallback white)
     };

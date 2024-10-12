@@ -14,7 +14,9 @@ fn main() {
     loop {
         input.clear();
         input = read_value("Choisissez une opération");
-        if !is_str_number::<i32>(&input) { // error handling
+        if !is_str_number::<i64>(&input) { // error handling
+            display_start(); // menu
+            escape_line(); // escape \n
             error("Saisie invalide, veuillez recommencer"); // throw warn in console
             continue; // prompt again
         }
@@ -24,7 +26,7 @@ fn main() {
             escape_line(); // escape \n
             error(&format!("Choisissez une option valide (de 1 à {})", OPERATIONS.len() + 1));
         } else { // constrained to existing options
-            if select == OPERATIONS.len() + 1 {// "quit" option
+            if select == OPERATIONS.len() + 1 { // "quit" option
                 printc("\nBye o/\n", "red");
                 break; // kill loop (end program)
             }

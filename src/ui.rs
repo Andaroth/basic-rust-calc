@@ -5,12 +5,12 @@ use crate::math::OPERATIONS;
 
 fn header() { // styled header
     printc(" ▗▄▖ ▗▄▄▖      ▗▄▄▖ ▗▄▖ ▗▖    ▗▄▄▖\n▐▌ ▐▌▐▌ ▐▌    ▐▌   ▐▌ ▐▌▐▌   ▐▌   \n▐▛▀▜▌▐▛▀▚▖    ▐▌   ▐▛▀▜▌▐▌   ▐▌   \n▐▌ ▐▌▐▙▄▞▘    ▝▚▄▄▖▐▌ ▐▌▐▙▄▄▖▝▚▄▄▖\n", "green");
-    printc("[by Andaroth > https://anda.ninja]\n", "magenta");
+    printc("[by Andaroth > https://anda.ninja]\n", "blue");
 }
 
 fn menu() { // shows all options + quit
-    for (i,m) in OPERATIONS.iter().enumerate() { println!("[{}] {}", i + 1, &m.0); }
-    print!("[{}] Quitter\n", OPERATIONS.len() + 1);
+    for (i,m) in OPERATIONS.iter().enumerate() { println!("[\x1b[35m{}\x1b[0m] {}", i + 1, &m.0); }
+    print!("[\x1b[35m{}\x1b[0m] Quitter\n", OPERATIONS.len() + 1);
 }
 
 pub fn display_start() {

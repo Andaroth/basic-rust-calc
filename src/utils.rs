@@ -11,7 +11,7 @@ pub fn str_to_number<T: FromStr>(text: &str) -> T where <T as FromStr>::Err: Deb
     return text.trim().parse::<T>().expect("Parsing error");
 }
 pub fn read_value(print: &str) -> String {
-    print!("{}: ", print);
+    print!("\x1b[0m{}: \x1b[35m", print);
     escape_line();
     let mut buffer = String::new();
     io::stdin().read_line(&mut buffer).ok().expect("Could not read line"); // prompt to ref

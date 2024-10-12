@@ -18,7 +18,7 @@ fn main() {
             error("Saisie invalide, veuillez recommencer"); // throw warn in console
             continue; // prompt again
         }
-        let select: usize = str_to_number::<usize>(&input); // usize to select operations by index
+        let select: usize = str_to_number::<i64>(&input) as usize; // usize to select operations by index
         if select < 1 || select > OPERATIONS.len() + 1 { // not existing option
             display_start(); // menu
             escape_line(); // escape \n
